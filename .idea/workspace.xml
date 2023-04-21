@@ -4,18 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b457a0e-774d-46e9-9e10-e406612d6769" name="Changes" comment="Создал минимальное приложение на React TypeScript">
-      <change afterPath="$PROJECT_DIR$/src/Hooks/hooks.ts" afterDir="false" />
+    <list default="true" id="1b457a0e-774d-46e9-9e10-e406612d6769" name="Changes" comment="Сделали типизацию для react-redux и @reduxjs/toolkit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/TodoItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TodoItem.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/TodoList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TodoList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Types/Data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Types/TodoItemType.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/webSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/webSlice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/HomePage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +80,7 @@
       <updated>1682094196741</updated>
       <workItem from="1682094197939" duration="1017000" />
       <workItem from="1682095251765" duration="82000" />
-      <workItem from="1682095364378" duration="7972000" />
+      <workItem from="1682095364378" duration="9553000" />
     </task>
     <task id="LOCAL-00001" summary="Создал минимальное приложение на React TypeScript">
       <created>1682100371680</created>
@@ -95,7 +89,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682100371680</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Сделали типизацию для react-redux и @reduxjs/toolkit">
+      <created>1682103583174</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1682103583174</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -103,6 +104,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Создал минимальное приложение на React TypeScript" />
-    <option name="LAST_COMMIT_MESSAGE" value="Создал минимальное приложение на React TypeScript" />
+    <MESSAGE value="Сделали типизацию для react-redux и @reduxjs/toolkit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Сделали типизацию для react-redux и @reduxjs/toolkit" />
   </component>
 </project>
