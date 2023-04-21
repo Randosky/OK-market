@@ -1,46 +1,12 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {ITodo} from "./Types/Data"
+import {ITodo} from "./Types/TodoItemType"
 import TodoList from "./Components/TodoList";
+import {useAppDispatch} from "./Hooks/hooks";
+import {addTodo} from "./store/webSlice";
 
 const App: React.FC = () => {
     const [inputValue, setInputValue] = useState("");
-    const [todos, setTodos] = useState<ITodo[]>([]);
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setInputValue(e.target.value);
-    }
-
-    // Сделали нажатие на кнопку находясь в input. А в input добавили onKeyDown={handleKeyDown}
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === "Enter")
-            addTodo();
-    }
-
-    const addTodo = () => {
-        if (inputValue !== "") {
-            setTodos([...todos, {
-                id: Date.now(),
-                title: inputValue,
-                complete: false,
-            }])
-            setInputValue("")
-        }
-    }
-
-    const removeTodo = (id: number): void => {
-        setTodos(todos.filter(todo => todo.id !== id))
-    }
-
-    const toggleTodo = (id: number): void => {
-        setTodos(todos.map(todo => {
-            if (todo.id !== id) return todo
-
-            return {
-                ...todo,
-                complete: !todo.complete
-            }
-        }))
-    }
+    const dispatch = useAppDispatch()
 
     // Позволяет установить ссылку на input
     const inputRef = useRef<HTMLInputElement>(null);
@@ -52,14 +18,17 @@ const App: React.FC = () => {
             inputRef.current.focus();
     }, []);
 
-
     return (
         <div>
             <div>
-                <input value={inputValue} onChange={handleChange} onKeyDown={handleKeyDown} ref={inputRef}/>
-                <button onClick={() => addTodo()}>Добавить</button>
+                <input value={inputValue} onChange={e => setInputValue(e.target.value)}
+                       onKeyDown={e => {
+                           if (e.key === "Enter")
+                               dispatch(addTodo(inputValue));
+                       }} ref={inputRef}/>
+                <button onClick={() => dispatch(addTodo(inputValue))}>Добавить</button>
             </div>
-            <TodoList items={todos} removeTodo={removeTodo} toggleTodo={toggleTodo}/>
+            <TodoList/>
         </div>
     );
 }
