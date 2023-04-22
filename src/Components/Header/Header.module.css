@@ -5,6 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 70px;
 }
 
 .header__logo {
@@ -69,4 +70,24 @@
     height: 70px;
     border-radius: 50%;
     border: 1px solid #d7d7d7;
+    position: relative;
+}
+
+.image__span1{
+    position: absolute;
+    width: 35px;
+    height: 1px;
+    background-color: #d7d7d7;
+    top: 50%;
+    right: 25%;
+}
+
+.image__span2{
+    position: absolute;
+    width: 35px;
+    height: 1px;
+    background-color: #d7d7d7;
+    transform: rotate(90deg);
+    top: 50%;
+    right: 25%;
 }

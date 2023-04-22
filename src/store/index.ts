@@ -1,10 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit';
+import {configureStore} from '@reduxjs/toolkit';
 import webSlice from "./webSlice";
 
 const store = configureStore({
     reducer: {
         web: webSlice,
-    }
+    },
 });
 
 export default store;

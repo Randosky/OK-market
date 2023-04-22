@@ -2,17 +2,27 @@ import {createSlice, PayloadAction, createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
 import {IProductItem} from "../Types/ProductItemType";
 import {readFile} from "fs";
+import {useAppDispatch} from "../Hooks/hooks";
 
 type WebState = {
     products: IProductItem[];
-    userImage: string;
+    filteredProducts: IProductItem[];
+    userImage: File | null;
+    userImageURL: string | undefined;
     findInput: string;
+    productById: IProductItem | null,
+    isHomePage: boolean,
+
 }
 
 const initialState: WebState = {
     products: [],
-    userImage: "",
+    filteredProducts: [],
+    userImage: null,
+    userImageURL: "",
     findInput: "",
+    productById: null,
+    isHomePage: true,
 }
 
 export const getProducts = createAsyncThunk<IProductItem[], undefined>(
@@ -27,23 +37,52 @@ export const getProducts = createAsyncThunk<IProductItem[], undefined>(
     }
 )
 
+export const getProductById = createAsyncThunk<IProductItem, string | undefined>(
+    "web/getProductsById",
+    async (id) => {
+        const response = await axios.get(`https://dummyjson.com/products/${id}`, {
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+        return await response.data
+    }
+)
+
 const webSlice = createSlice({
     name: "webSlice",
     initialState,
     reducers: {
-        updateUserImage(state, action: PayloadAction<string>) {
-          state.userImage = action.payload;
+        updateUserImage(state, action: PayloadAction<FileList | null>) {
+            console.log(action.payload)
+            if (action.payload !== null) {
+                state.userImage = action.payload[0]
+                state.userImageURL = URL.createObjectURL(action.payload[0]);
+            }
         },
         updateFindInput(state, action: PayloadAction<string>) {
-          state.findInput = action.payload;
+            state.findInput = action.payload;
         },
+        doSearch(state) {
+            state.filteredProducts = state.products.filter(product => product.title.toLowerCase().includes(state.findInput.toLowerCase()))
+        },
+        updateIsHomePage(state, action: PayloadAction<boolean>) {
+            state.isHomePage = action.payload;
+        }
     },
     extraReducers: (builder) => {
         builder
             .addCase(getProducts.fulfilled, (state, action) => {
                 state.products = action.payload
+                state.filteredProducts = state.products;
             })
             .addCase(getProducts.rejected, (state, action) => {
+                console.log(action.error.stack)
+            })
+            .addCase(getProductById.fulfilled, (state, action) => {
+                state.productById = action.payload
+            })
+            .addCase(getProductById.rejected, (state, action) => {
                 console.log(action.error.stack)
             })
     },
@@ -51,7 +90,9 @@ const webSlice = createSlice({
 
 export const {
     updateUserImage,
-    updateFindInput
+    updateFindInput,
+    doSearch,
+    updateIsHomePage,
 } = webSlice.actions
 
 export default webSlice.reducer;

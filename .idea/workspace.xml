@@ -4,30 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b457a0e-774d-46e9-9e10-e406612d6769" name="Changes" comment="Сделали асинхронный доступ к api через axios">
-      <change afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/Footer/Footer.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/Footer/Footer.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/Header/Header.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/Header/Header.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/Products/Product.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/Products/ProductItem.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Hooks/Globals.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Hooks/customTemplate.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Types/ProductItemType.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/imgs/basket.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/imgs/logo.svg" afterDir="false" />
+    <list default="true" id="1b457a0e-774d-46e9-9e10-e406612d6769" name="Changes" comment="Начали работу над проектом">
+      <change afterPath="$PROJECT_DIR$/src/Pages/ProductItemPage/ProductItemPage.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pages/ProductItemPage/ProductItemPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pages/ProductsPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/TodoItem.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/TodoList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Products/ProductList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/HomePage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Types/TodoItemType.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Header/Header.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Header/Header.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Header/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Products/Product.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Products/Product.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Products/ProductItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Products/ProductItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Products/ProductList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Products/ProductList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/HomePage.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/webSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/webSlice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,6 +92,7 @@
       <recent name="C:\Users\bosso\OneDrive\Рабочий стол\Учёба\Web\TypeScript.SkillBox\ok-market\src\imgs" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\bosso\OneDrive\Рабочий стол\Учёба\Web\TypeScript.SkillBox\ok-market\src\Pages\ProductItemPage" />
       <recent name="C:\Users\bosso\OneDrive\Рабочий стол\Учёба\Web\TypeScript.SkillBox\ok-market\src\Hooks" />
       <recent name="C:\Users\bosso\OneDrive\Рабочий стол\Учёба\Web\TypeScript.SkillBox\ok-market\src\Components\Products" />
     </key>
@@ -115,7 +108,7 @@
       <workItem from="1682094197939" duration="1017000" />
       <workItem from="1682095251765" duration="82000" />
       <workItem from="1682095364378" duration="9598000" />
-      <workItem from="1682157285767" duration="15693000" />
+      <workItem from="1682157285767" duration="35323000" />
     </task>
     <task id="LOCAL-00001" summary="Создал минимальное приложение на React TypeScript">
       <created>1682100371680</created>
@@ -145,7 +138,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682162935423</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Начали работу над проектом">
+      <created>1682175636154</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1682175636154</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -156,6 +156,7 @@
     <MESSAGE value="Сделали типизацию для react-redux и @reduxjs/toolkit" />
     <MESSAGE value="Сделали react-router-dom, теперь есть навигация по сайту" />
     <MESSAGE value="Сделали асинхронный доступ к api через axios" />
-    <option name="LAST_COMMIT_MESSAGE" value="Сделали асинхронный доступ к api через axios" />
+    <MESSAGE value="Начали работу над проектом" />
+    <option name="LAST_COMMIT_MESSAGE" value="Начали работу над проектом" />
   </component>
 </project>

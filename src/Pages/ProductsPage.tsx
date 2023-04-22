@@ -1,9 +1,9 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect} from 'react';
 import {useAppDispatch} from "../Hooks/hooks";
 import {getProducts} from "../store/webSlice";
 import ProductList from "../Components/Products/ProductList";
 
-const HomePage = () => {
+const ProductsPage = () => {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
@@ -11,10 +11,8 @@ const HomePage = () => {
     }, []);
 
     return (
-        <div>
-            <ProductList/>
-        </div>
+        <ProductList/>
     );
 };
 
-export default HomePage;
+export default ProductsPage;
