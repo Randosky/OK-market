@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    font-family: Montserrat, sans-serif;
+    font-weight: 400;
+    color: #333;
+}
+
+button, input, select{
+    font-family: Montserrat, sans-serif;
+    border: none;
+    outline: none;
+    color: #333333;
+}
