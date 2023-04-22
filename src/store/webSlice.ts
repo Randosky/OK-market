@@ -1,5 +1,6 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction, createAsyncThunk} from "@reduxjs/toolkit";
 import {ITodo} from "../Types/TodoItemType";
+import axios from "axios";
 
 type WebState = {
     todos: ITodo[];
@@ -8,6 +9,20 @@ type WebState = {
 const initialState: WebState = {
     todos: [],
 }
+
+export const fetchTodos = createAsyncThunk<ITodo[], undefined>(
+    'web/fetchTodos',
+    async () => {
+        const response = await axios.get("https://jsonplaceholder.typicode.com/todos", {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+        if (!response.status)
+            return await response.data
+        return await response.data
+    }
+)
 
 const webSlice = createSlice({
     name: "webSlice",
@@ -37,6 +52,15 @@ const webSlice = createSlice({
             const id = action.payload
             state.todos = state.todos.filter(todo => todo.id !== id)
         },
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchTodos.fulfilled, (state, action) => {
+                state.todos = action.payload
+            })
+            .addCase(fetchTodos.rejected, (state, action) => {
+                console.log(action.error.stack)
+            })
     },
 });
 

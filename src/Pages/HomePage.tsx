@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {useAppDispatch} from "../Hooks/hooks";
-import {addTodo} from "../store/webSlice";
+import {addTodo, fetchTodos} from "../store/webSlice";
 import TodoList from "../Components/TodoList";
 
 const HomePage = () => {
@@ -15,6 +15,7 @@ const HomePage = () => {
         // То есть при открытии страницы наш курсор будет в input
         if (inputRef.current)
             inputRef.current.focus();
+        dispatch(fetchTodos());
     }, []);
 
     return (
