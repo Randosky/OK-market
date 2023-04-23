@@ -30,7 +30,7 @@ const ProductItem: React.FC<IProductItemProps> = (props) => {
                             <span className={cl.old__span}></span>
                         </p>
                     </div>
-                    <p className={cl.product__rating}>{rating}</p>
+                    <p className={cl.product__rating}>{rating} / 5</p>
                 </div>
                 <p className={cl.product__title}>{title}</p>
             </div>

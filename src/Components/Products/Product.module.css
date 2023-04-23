@@ -4,7 +4,7 @@
     flex-wrap: wrap;
     max-width: 1600px;
     padding: 0 50px;
-    margin: 0 auto 70px;
+    margin: 0 auto;
 }
 
 .product__container{
@@ -14,7 +14,7 @@
     height: fit-content;
 }
 
-.product__container:not(:nth-last-child(2), :last-child){
+.product__container{
     margin-bottom: 50px;
 }
 

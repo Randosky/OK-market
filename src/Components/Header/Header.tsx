@@ -23,10 +23,7 @@ const Header: React.FC = () => {
 
     return (
         <div className={cl.header__main}>
-            <div className={cl.header__logo} onClick={() => {
-                navigate("/")
-                dispatch(updateIsHomePage(true))
-            }}></div>
+            <div className={cl.header__logo} onClick={() => {navigate("/")}}></div>
             {
                 webSlice.isHomePage
                     ?

@@ -10,4 +10,5 @@ export interface IProductItem {
     category: string,
     thumbnail: string,
     images: string[],
+    searchData?: string,
 }

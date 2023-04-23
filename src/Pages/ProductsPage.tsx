@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch} from "../Hooks/hooks";
-import {getProducts} from "../store/webSlice";
+import {getProducts, updateIsHomePage} from "../store/webSlice";
 import ProductList from "../Components/Products/ProductList";
 
 const ProductsPage = () => {
@@ -8,6 +8,7 @@ const ProductsPage = () => {
 
     useEffect(() => {
         dispatch(getProducts());
+        dispatch(updateIsHomePage(true));
     }, []);
 
     return (

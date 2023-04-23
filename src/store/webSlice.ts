@@ -12,6 +12,7 @@ type WebState = {
     findInput: string;
     productById: IProductItem | null,
     isHomePage: boolean,
+    currentImage: string,
 
 }
 
@@ -23,6 +24,7 @@ const initialState: WebState = {
     findInput: "",
     productById: null,
     isHomePage: true,
+    currentImage: "",
 }
 
 export const getProducts = createAsyncThunk<IProductItem[], undefined>(
@@ -64,17 +66,30 @@ const webSlice = createSlice({
             state.findInput = action.payload;
         },
         doSearch(state) {
-            state.filteredProducts = state.products.filter(product => product.title.toLowerCase().includes(state.findInput.toLowerCase()))
+            state.filteredProducts = state.products.filter(product => {
+                if (typeof product.searchData === "string")
+                    return product.searchData.toLowerCase().includes(state.findInput.toLowerCase())
+            })
         },
         updateIsHomePage(state, action: PayloadAction<boolean>) {
             state.isHomePage = action.payload;
+        },
+        updateCurrentImage(state, action: PayloadAction<string>){
+            state.currentImage = action.payload;
         }
     },
     extraReducers: (builder) => {
         builder
             .addCase(getProducts.fulfilled, (state, action) => {
                 state.products = action.payload
+                state.products = state.products.map(product => {
+                    return {
+                        ...product,
+                        searchData: product.title + " " + product.description + " " + product.brand + " " + product.category,
+                    }
+                })
                 state.filteredProducts = state.products;
+                // console.log(state.products[1])
             })
             .addCase(getProducts.rejected, (state, action) => {
                 console.log(action.error.stack)
@@ -89,6 +104,7 @@ const webSlice = createSlice({
 });
 
 export const {
+    updateCurrentImage,
     updateUserImage,
     updateFindInput,
     doSearch,
