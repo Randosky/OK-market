@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b457a0e-774d-46e9-9e10-e406612d6769" name="Changes" comment="Сделал основную стилизацию, добавил все необходимые данные">
+    <list default="true" id="1b457a0e-774d-46e9-9e10-e406612d6769" name="Changes" comment="Сделал страницу карточки со всеми необходимыми стилями">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Header/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Products/Product.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Products/Product.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Products/ProductItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Products/ProductItem.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Pages/ProductItemPage/ProductItemPage.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/ProductItemPage/ProductItemPage.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/ProductItemPage/ProductItemPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/ProductItemPage/ProductItemPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/ProductsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/ProductsPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Types/ProductItemType.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Types/ProductItemType.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/webSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/webSlice.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +96,7 @@
       <workItem from="1682095251765" duration="82000" />
       <workItem from="1682095364378" duration="9598000" />
       <workItem from="1682157285767" duration="35391000" />
-      <workItem from="1682243152623" duration="10715000" />
+      <workItem from="1682243152623" duration="11244000" />
     </task>
     <task id="LOCAL-00001" summary="Создал минимальное приложение на React TypeScript">
       <created>1682100371680</created>
@@ -147,7 +140,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682200590001</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Сделал страницу карточки со всеми необходимыми стилями">
+      <created>1682255503726</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1682255503726</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -160,6 +160,7 @@
     <MESSAGE value="Сделали асинхронный доступ к api через axios" />
     <MESSAGE value="Начали работу над проектом" />
     <MESSAGE value="Сделал основную стилизацию, добавил все необходимые данные" />
-    <option name="LAST_COMMIT_MESSAGE" value="Сделал основную стилизацию, добавил все необходимые данные" />
+    <MESSAGE value="Сделал страницу карточки со всеми необходимыми стилями" />
+    <option name="LAST_COMMIT_MESSAGE" value="Сделал страницу карточки со всеми необходимыми стилями" />
   </component>
 </project>
