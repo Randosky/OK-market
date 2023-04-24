@@ -13,7 +13,10 @@ type WebState = {
     productById: IProductItem | null,
     isHomePage: boolean,
     currentImage: string,
-
+    favoriteCount: number,
+    basketCount: number,
+    currentProductIsFavorite: boolean,
+    currentProductIsBasket: boolean,
 }
 
 const initialState: WebState = {
@@ -25,6 +28,10 @@ const initialState: WebState = {
     productById: null,
     isHomePage: true,
     currentImage: "",
+    favoriteCount: 0,
+    basketCount: 0,
+    currentProductIsFavorite: false,
+    currentProductIsBasket: false,
 }
 
 export const getProducts = createAsyncThunk<IProductItem[], undefined>(
@@ -67,16 +74,43 @@ const webSlice = createSlice({
         },
         doSearch(state) {
             state.filteredProducts = state.products.filter(product => {
-                if (typeof product.searchData === "string")
-                    return product.searchData.toLowerCase().includes(state.findInput.toLowerCase())
+                return product.searchData.toLowerCase().includes(state.findInput.toLowerCase())
             })
         },
         updateIsHomePage(state, action: PayloadAction<boolean>) {
             state.isHomePage = action.payload;
         },
-        updateCurrentImage(state, action: PayloadAction<string>){
+        updateCurrentImage(state, action: PayloadAction<string>) {
             state.currentImage = action.payload;
-        }
+        },
+        updateCurrentFavorite(state, action: PayloadAction<number>) {
+            state.products = state.products.map(product => {
+                if (product.id === action.payload) {
+                    return {
+                        ...product,
+                        isFavorite: !product.isFavorite,
+                    }
+                } else return {...product}
+            })
+            state.filteredProducts = state.products
+        },
+        countAllFavorite(state) {
+            state.favoriteCount = state.filteredProducts.filter(product => product.isFavorite === true).length
+        },
+        updateCurrentBasket(state, action: PayloadAction<number>) {
+            state.products = state.products.map(product => {
+                if (product.id === action.payload) {
+                    return {
+                        ...product,
+                        isBasket: !product.isBasket,
+                    }
+                } else return {...product}
+            })
+            state.filteredProducts = state.products
+        },
+        countAllBasket(state) {
+            state.basketCount = state.filteredProducts.filter(product => product.isBasket === true).length
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -86,10 +120,11 @@ const webSlice = createSlice({
                     return {
                         ...product,
                         searchData: product.title + " " + product.description + " " + product.brand + " " + product.category,
+                        isFavorite: false,
+                        isBasket: false,
                     }
                 })
-                state.filteredProducts = state.products;
-                // console.log(state.products[1])
+                state.filteredProducts = state.products
             })
             .addCase(getProducts.rejected, (state, action) => {
                 console.log(action.error.stack)
@@ -104,11 +139,15 @@ const webSlice = createSlice({
 });
 
 export const {
+    updateCurrentBasket,
+    countAllBasket,
+    countAllFavorite,
     updateCurrentImage,
     updateUserImage,
     updateFindInput,
     doSearch,
     updateIsHomePage,
+    updateCurrentFavorite,
 } = webSlice.actions
 
 export default webSlice.reducer;

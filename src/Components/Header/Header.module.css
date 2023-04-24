@@ -51,8 +51,24 @@
 
 .right__favorite{
     cursor: pointer;
-    font-size: 18px;
+    background: url("../../imgs/heart.svg") no-repeat center;
+    width: 30px;
+    height: 30px;
+    background-size: contain;
     margin: 0 30px 0 0;
+    position: relative;
+}
+
+.favorite__number{
+    position: absolute;
+    height: 20px;
+    top: -10px;
+    right: -15px;
+    color: #e1e1e1;
+    font-weight: 500;
+    background-color: #f91155;
+    border-radius: 8px;
+    padding: 0 8px
 }
 
 .right__basket{
@@ -62,6 +78,7 @@
     background-size: contain;
     margin-right: 30px;
     cursor: pointer;
+    position: relative;
 }
 
 .right__image{
@@ -90,4 +107,86 @@
     transform: rotate(90deg);
     top: 50%;
     right: 25%;
+}
+
+.media__425{
+    display: none;
+}
+
+/* media */
+
+@media (max-width: 1024px) {
+    .header__main{
+       padding: 10px 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .middle__search{
+        font-size: 14px;
+        height: 35px;
+    }
+
+    .middle__find{
+        font-size: 14px;
+        height: 35px;
+        width: 100px;
+    }
+
+    .right__favorite{
+        width: 20px;
+        height: 20px;
+    }
+
+    .right__basket{
+        width: 20px;
+        height: 20px;
+        background: url("../../imgs/basket.svg") no-repeat center;
+        background-size: contain;
+        margin-right: 15px;
+        cursor: pointer;
+    }
+
+    .header__main{
+        padding: 10px 10px;
+    }
+
+    .right__image{
+        width: 35px;
+        height: 35px;
+    }
+
+    .image__span1{
+        width: calc(35px / 2);
+    }
+
+    .image__span2{
+        width: calc(35px / 2);
+    }
+}
+
+@media (max-width: 425px) {
+    .header__main{
+        padding: 10px 5px;
+        margin-bottom: 15px;
+    }
+
+    .media__425{
+        display: flex;
+        width: 100%;
+        padding: 0 5px;
+        margin-bottom: 15px;
+    }
+
+    .media__1024{
+        display: none;
+    }
+
+    .middle__search{
+        width: 100%;
+    }
+
+    .middle__find{
+        width: 160px;
+    }
 }

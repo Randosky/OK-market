@@ -12,7 +12,7 @@ const Header: React.FC = () => {
 
     useEffect(() => {
         if (webSlice.findInput === "") {
-            dispatch(getProducts())
+            dispatch(doSearch())
         }
     }, [webSlice.findInput]);
 
@@ -22,12 +22,50 @@ const Header: React.FC = () => {
     }
 
     return (
-        <div className={cl.header__main}>
-            <div className={cl.header__logo} onClick={() => {navigate("/")}}></div>
+        <div>
+            <div className={cl.header__main}>
+                <div className={cl.header__logo} onClick={() => {navigate("/")}}></div>
+                {
+                    webSlice.isHomePage
+                        ?
+                        <div className={cl.header__middle + " " + cl.media__1024}>
+                            <input className={cl.middle__search} value={webSlice.findInput} onKeyDown={handleKeyDown}
+                                   placeholder="Искать товары"
+                                   onChange={(e) => dispatch(updateFindInput(e.target.value))}/>
+                            <button className={cl.middle__find}
+                                    onClick={() => dispatch(doSearch())}>Найти
+                            </button>
+                        </div>
+                        : <div></div>
+                }
+                <div className={cl.header__right}>
+                    <div className={cl.right__favorite} onClick={() => {navigate("/favorites")}}>
+                        <span className={cl.favorite__number}>{webSlice.favoriteCount}</span>
+                    </div>
+                    <div className={cl.right__basket} onClick={() => {navigate("/basket")}}>
+                        <span className={cl.favorite__number}>{webSlice.basketCount}</span>
+                    </div>
+                    {
+                        webSlice.userImage !== null
+                            ?
+                            <img src={webSlice.userImageURL}
+                                 alt="Не видно!" className={cl.right__image}/>
+                            :
+                            <label className={cl.right__image}>
+                                <span className={cl.image__span1}></span>
+                                <span className={cl.image__span2}></span>
+                                <input type="file" style={{display: "none"}}
+                                       onChange={(e) =>
+                                           dispatch(updateUserImage(e.target.files))}
+                                />
+                            </label>
+                    }
+                </div>
+            </div>
             {
                 webSlice.isHomePage
                     ?
-                    <div className={cl.header__middle}>
+                    <div className={cl.header__middle + " " + cl.media__425}>
                         <input className={cl.middle__search} value={webSlice.findInput} onKeyDown={handleKeyDown}
                                placeholder="Искать товары"
                                onChange={(e) => dispatch(updateFindInput(e.target.value))}/>
@@ -37,25 +75,6 @@ const Header: React.FC = () => {
                     </div>
                     : <div></div>
             }
-            <div className={cl.header__right}>
-                <p className={cl.right__favorite}>Избранное</p>
-                <div className={cl.right__basket}></div>
-                {
-                    webSlice.userImage !== null
-                        ?
-                        <img src={webSlice.userImageURL}
-                             alt="Не видно!" className={cl.right__image}/>
-                        :
-                        <label className={cl.right__image}>
-                            <span className={cl.image__span1}></span>
-                            <span className={cl.image__span2}></span>
-                            <input type="file" style={{display: "none"}}
-                                   onChange={(e) =>
-                                       dispatch(updateUserImage(e.target.files))}
-                            />
-                        </label>
-                }
-            </div>
         </div>
     );
 };

@@ -2,18 +2,28 @@ import React, {useEffect} from 'react';
 import {useParams, useSearchParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../Hooks/hooks";
 import cl from "./ProductItemPage.module.css"
-import {getProductById, updateCurrentImage, updateIsHomePage} from "../../store/webSlice";
+import {
+    countAllBasket,
+    countAllFavorite,
+    getProductById, updateCurrentBasket,
+    updateCurrentFavorite,
+    updateCurrentImage
+} from "../../store/webSlice";
 import {IProductItem} from "../../Types/ProductItemType";
+import {useNavigate} from "react-router";
 
 const ProductItemPage: React.FC = () => {
     const dispatch = useAppDispatch();
     const params = useParams()
     const webSlice = useAppSelector(state => state.web)
+    const navigate = useNavigate()
 
     useEffect(() => {
         dispatch(getProductById(params.id));
         if (webSlice.productById !== null)
             dispatch(updateCurrentImage(webSlice.productById.thumbnail));
+        if (webSlice.products.length === 0)
+            navigate("/");
     }, []);
 
     const product: IProductItem | null = webSlice.productById
@@ -69,11 +79,23 @@ const ProductItemPage: React.FC = () => {
                                             <span className={cl.productItem__span}></span>
                                         </p>
                                     </div>
-                                    <p className={cl.productItem__countPrice}>{Math.round(product.price - (product.price * (product.discountPercentage / 100)))} $ за
+                                    <p className={cl.productItem__countPrice}>{Math.round(product.price - (product.price * (product.discountPercentage / 100)))} $
+                                        за
                                         1 шт.</p>
                                     <div className={cl.productItem__bottom}>
-                                        <button className={cl.productItem__favorite}>В избранное</button>
-                                        <button className={cl.productItem__basket}>Добавить в корзину</button>
+                                        <button
+                                            className={cl.productItem__favorite}
+                                            onClick={() => {
+                                                dispatch(updateCurrentFavorite(product.id))
+                                                dispatch(countAllFavorite())
+                                            }}>В избранное
+                                        </button>
+                                        <button className={cl.productItem__basket}
+                                                onClick={() => {
+                                                    dispatch(updateCurrentBasket(product.id))
+                                                    dispatch(countAllBasket())
+                                                }}>Добавить в корзину
+                                        </button>
                                         <p className={cl.productItem__delivery}>Доставка<span> никогда</span></p>
                                     </div>
                                 </div>

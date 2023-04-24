@@ -12,9 +12,7 @@
     display: flex;
     justify-content: center;
     height: fit-content;
-}
-
-.product__container{
+    position: relative;
     margin-bottom: 50px;
 }
 
@@ -87,4 +85,79 @@
 .product__title{
     font-weight: 400;
     color: #000;
+}
+
+.product__heart{
+    position: absolute;
+    cursor: pointer;
+    background: url("../../imgs/heart.svg") no-repeat center;
+    background-size: contain;
+    width: 30px;
+    height: 30px;
+    right: 0;
+    top: 0;
+    transition: background 0.2s ease-in-out;
+}
+
+.product__heart:hover{
+    background: url("../../imgs/heart-filled.svg") no-repeat center;
+    background-size: contain;
+}
+
+.heart__filled{
+    position: absolute;
+    cursor: pointer;
+    background: url("../../imgs/heart-filled.svg") no-repeat center;
+    background-size: contain;
+    width: 30px;
+    height: 30px;
+    right: 0;
+    top: 0;
+}
+
+.product__empty{
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+}
+
+.empty__text1{
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.empty__text2{
+    font-size: 22px;
+}
+
+/* media */
+
+@media (max-width: 1024px) {
+    .product__container{
+        width: 33%;
+    }
+
+    .product__list{
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .product__container{
+        width: 50%;
+    }
+
+    .product__list{
+        padding: 0 10px;
+    }
+}
+
+@media (max-width: 425px) {
+    .product__container{
+        width: 100%;
+    }
+
+    .product__list{
+        padding: 0 5px;
+    }
 }

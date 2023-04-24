@@ -1,19 +1,26 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {IProductItem} from "../../Types/ProductItemType";
 import {useAppDispatch} from "../../Hooks/hooks";
 import cl from "./Product.module.css"
 import "../../App.css"
-import ProductItemPage from "../../Pages/ProductItemPage/ProductItemPage";
 import {useNavigate} from "react-router"
-import {updateIsHomePage} from "../../store/webSlice";
+import webSlice, {
+    countAllFavorite,
+    updateCurrentFavorite,
+    updateIsHomePage
+} from "../../store/webSlice";
 
 interface IProductItemProps extends IProductItem {
 }
 
 const ProductItem: React.FC<IProductItemProps> = (props) => {
-    const {id, title, description, price, discountPercentage, rating, stock, brand, category, thumbnail, images} = props
+    const {
+        id, title, description, price, discountPercentage, rating, stock, brand, category, thumbnail, images,
+        searchData, isFavorite
+    } = props
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
+
 
     return (
         <div className={cl.product__container}>
@@ -34,6 +41,11 @@ const ProductItem: React.FC<IProductItemProps> = (props) => {
                 </div>
                 <p className={cl.product__title}>{title}</p>
             </div>
+            <span className={isFavorite ? cl.heart__filled : cl.product__heart}
+                  onClick={() => {
+                      dispatch(updateCurrentFavorite(id))
+                      dispatch(countAllFavorite())
+                  }}></span>
         </div>
     );
 };

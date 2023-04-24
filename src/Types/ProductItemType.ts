@@ -10,5 +10,7 @@ export interface IProductItem {
     category: string,
     thumbnail: string,
     images: string[],
-    searchData?: string,
+    searchData: string,
+    isFavorite: boolean,
+    isBasket: boolean,
 }
