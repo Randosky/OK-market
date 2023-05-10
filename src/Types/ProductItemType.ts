@@ -13,4 +13,6 @@ export interface IProductItem {
     searchData: string,
     isFavorite: boolean,
     isBasket: boolean,
+    countToBuy: number,
+    discountPrice: number,
 }

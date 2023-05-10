@@ -1,12 +1,26 @@
 import React, {useEffect, useState} from 'react';
-import {useAppSelector} from "../../Hooks/hooks";
+import {useAppDispatch, useAppSelector} from "../../Hooks/hooks";
 import ProductItem from "../../Components/Products/ProductItem";
 import styles from "../../Components/Products/Product.module.css";
 import cl from "./BasketPage.module.css";
+import productItem from "../../Components/Products/ProductItem";
+import {
+    countAllBasket,
+    decrementProductCountToBuy, deleteAllBasket, deleteAllSelected,
+    incrementProductCountToBuy,
+    setProductCountToBuy, updateAllSelected, updateCurrentBasket, updateSelected,
+    updateTotalSum
+} from "../../store/webSlice";
+import {useNavigate} from "react-router";
 
 const BasketPage: React.FC = () => {
     const webSlice = useAppSelector(state => state.web)
-    const [count, setCount] = useState("1");
+    const navigate = useNavigate()
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(updateTotalSum())
+    }, [webSlice.filteredProducts]);
 
 
     return (
@@ -24,35 +38,45 @@ const BasketPage: React.FC = () => {
                         <div className={cl.basket__main}>
                             <div className={cl.basket__left}>
                                 <div className={cl.basket__select}>
-                                    <div className={cl.select__checkbox}></div>
+                                    <div className={
+                                        webSlice.basketCount === webSlice.selected.length
+                                            ? cl.select__checkbox + " " + cl.element__checkboxActive
+                                            : cl.select__checkbox
+                                    } onClick={() => {
+                                        dispatch(updateAllSelected())
+                                    }}></div>
                                     <p className={cl.select__all}>Выбрать все</p>
-                                    <p className={cl.select__delete}>Удалить выбранные</p>
+                                    <p className={cl.select__delete}
+                                       onClick={() => {
+                                           dispatch(deleteAllSelected())
+                                           dispatch(countAllBasket())
+                                       }}>Удалить выбранные</p>
                                 </div>
                                 {
                                     webSlice.filteredProducts.map((product, index) => {
-                                        const currentSum = Math.round(product.price - (product.price * (product.discountPercentage / 100)))
                                         if (product.isBasket)
                                             return (
                                                 <div className={cl.basket__element} key={index}>
-                                                    <div className={cl.element__checkbox}></div>
-                                                    <img className={cl.element__image} src={product.thumbnail}/>
+                                                    <div
+                                                        className={product.id in webSlice.selected
+                                                            ? cl.element__checkbox + " " + cl.element__checkboxActive
+                                                            : cl.element__checkbox}
+                                                        onClick={() => dispatch(updateSelected(product.id))}></div>
+                                                    <img className={cl.element__image} src={product.thumbnail}
+                                                         alt="Не видно"/>
                                                     <p className={cl.element__text}>{product.title}</p>
-                                                    <p className={cl.element__price}>{currentSum} $</p>
+                                                    <p className={cl.element__price}>{product.discountPrice} $</p>
                                                     <p className={cl.element__countText}>Количество:</p>
-                                                    <input value={count}
+                                                    <input value={product.countToBuy}
                                                            onChange={(e) => {
-                                                               if (Number(e.target.value) > product.stock)
-                                                                   setCount(product.stock.toString())
-                                                               else setCount(e.target.value)
+                                                               dispatch(setProductCountToBuy([product, e.target.value]))
                                                            }}
                                                            type={"number"}
                                                            className={cl.element__count}/>
                                                     <div className={cl.element__arrows}>
                                                         <span className={cl.arrows__span1}
                                                               onClick={() => {
-                                                                  if (Number(count) === product.stock)
-                                                                      setCount(product.stock.toString())
-                                                                  else setCount((Number(count) + 1).toString())
+                                                                  dispatch(incrementProductCountToBuy(product))
                                                               }}>
                                                             <svg width="16" height="9" viewBox="0 0 16 9" fill="none"
                                                                  xmlns="http://www.w3.org/2000/svg">
@@ -63,9 +87,7 @@ const BasketPage: React.FC = () => {
                                                         </span>
                                                         <span className={cl.arrows__span2}
                                                               onClick={() => {
-                                                                  if (Number(count) - 1 === 0)
-                                                                      setCount("1")
-                                                                  else setCount((Number(count) - 1).toString())
+                                                                  dispatch(decrementProductCountToBuy(product))
                                                               }}>
                                                             <svg width="16" height="9" viewBox="0 0 16 9" fill="none"
                                                                  xmlns="http://www.w3.org/2000/svg">
@@ -83,10 +105,16 @@ const BasketPage: React.FC = () => {
                                 }
                             </div>
                             <div className={cl.basket__right}>
-                                <button className={cl.basket__buy}></button>
-                                <div>
+                                <button className={cl.basket__buy} onClick={() => {
+                                    navigate("/")
+                                    dispatch(deleteAllBasket())
+                                    dispatch(countAllBasket())
+                                }}
+                                >Купить
+                                </button>
+                                <div className={cl.basket__totalCost}>
                                     <h2>Общая стоимость</h2>
-                                    <p>2 $</p>
+                                    <p>{webSlice.totalSum} $</p>
                                 </div>
                             </div>
                         </div>

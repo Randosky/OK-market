@@ -4,18 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b457a0e-774d-46e9-9e10-e406612d6769" name="Changes" comment="Сделал страницу карточки со всеми необходимыми стилями">
-      <change afterPath="$PROJECT_DIR$/src/Pages/BasketPage/BasketPage.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pages/BasketPage/BasketPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pages/FavoriteItemsPage/FavoriteItemsPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/imgs/heart-filled.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/imgs/heart.svg" afterDir="false" />
+    <list default="true" id="1b457a0e-774d-46e9-9e10-e406612d6769" name="Changes" comment="Сделал страницу с избранными товарами и корзину, добавил возможность добавлять в корзину и в избранное">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/Header/Header.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Header/Header.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/Header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Header/Header.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/Products/Product.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Products/Product.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/Products/ProductItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Products/ProductItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/BasketPage/BasketPage.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/BasketPage/BasketPage.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/BasketPage/BasketPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/BasketPage/BasketPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Pages/ProductItemPage/ProductItemPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/ProductItemPage/ProductItemPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Pages/ProductsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/ProductsPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Types/ProductItemType.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Types/ProductItemType.ts" afterDir="false" />
@@ -63,22 +59,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/bosso/OneDrive/Рабочий стол/Учёба/Web/TypeScript.SkillBox/ok-market/src/imgs",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Users\\bosso\\OneDrive\\Рабочий стол\\Учёба\\Web\\TypeScript.SkillBox\\ok-market\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/bosso/OneDrive/Рабочий стол/Учёба/Web/TypeScript.SkillBox/ok-market&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\bosso\\OneDrive\\Рабочий стол\\Учёба\\Web\\TypeScript.SkillBox\\ok-market\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
@@ -110,7 +106,9 @@
       <workItem from="1682095364378" duration="9598000" />
       <workItem from="1682157285767" duration="35391000" />
       <workItem from="1682243152623" duration="11459000" />
-      <workItem from="1682266480368" duration="24367000" />
+      <workItem from="1682266480368" duration="24649000" />
+      <workItem from="1682597407983" duration="13599000" />
+      <workItem from="1683724082183" duration="10123000" />
     </task>
     <task id="LOCAL-00001" summary="Создал минимальное приложение на React TypeScript">
       <created>1682100371680</created>
@@ -168,7 +166,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682256024494</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Сделал страницу с избранными товарами и корзину, добавил возможность добавлять в корзину и в избранное">
+      <created>1682360229674</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1682360229674</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -182,6 +187,7 @@
     <MESSAGE value="Начали работу над проектом" />
     <MESSAGE value="Сделал основную стилизацию, добавил все необходимые данные" />
     <MESSAGE value="Сделал страницу карточки со всеми необходимыми стилями" />
-    <option name="LAST_COMMIT_MESSAGE" value="Сделал страницу карточки со всеми необходимыми стилями" />
+    <MESSAGE value="Сделал страницу с избранными товарами и корзину, добавил возможность добавлять в корзину и в избранное" />
+    <option name="LAST_COMMIT_MESSAGE" value="Сделал страницу с избранными товарами и корзину, добавил возможность добавлять в корзину и в избранное" />
   </component>
 </project>

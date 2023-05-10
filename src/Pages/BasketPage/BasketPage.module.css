@@ -7,6 +7,9 @@
 .basket__main{
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    height: 100%;
+    padding-bottom: 100px;
 }
 
 .basket__left{
@@ -15,7 +18,7 @@
     background-color: rgba(236, 236, 236, 0.87);
     padding: 0 20px 20px 20px;
     border-radius: 20px;
-    width: fit-content;
+    width: 60%;
 }
 
 .basket__select{
@@ -55,6 +58,7 @@
 .basket__element{
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .basket__element:not(:last-child){
@@ -84,9 +88,9 @@
 .element__text{
     font-size: 18px;
     font-weight: 500;
-    margin-right: 15px;
+    margin-right: 30px;
     cursor: default;
-    width: 250px;
+    width: 20%;
     flex-wrap: wrap;
 }
 
@@ -96,9 +100,9 @@
     font-weight: 500;
     background-color: #10c44c;
     color: #fff;
+    width: 8%;
     margin-right: 30px;
     text-align: center;
-    width: 80px;
     cursor: default;
 }
 
@@ -110,7 +114,7 @@
 }
 
 .element__count{
-    width: 40px;
+    width: 50px;
     text-align: center;
     padding: 6px 8px;
     background-color: transparent;
@@ -153,4 +157,39 @@ input[type="number"]:focus {
     cursor: pointer;
     width: fit-content;
     height: fit-content;
+}
+
+.basket__right{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 20px;
+    width: 30%;
+    background-color: rgba(236, 236, 236, 0.87);
+}
+
+.basket__buy{
+    border-radius: 10px;
+    font-size: 18px;
+    background-color: #10c44c;
+    color: #fff;
+    padding: 16px;
+    text-align: center;
+    margin-bottom: 25px;
+    cursor: pointer;
+}
+
+.basket__totalCost{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+}
+
+.basket__totalCost h2{
+    color: black;
+}
+
+.basket__totalCost p{
+    color: black;
 }

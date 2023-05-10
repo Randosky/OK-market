@@ -7,7 +7,7 @@ import {
     countAllFavorite,
     getProductById, updateCurrentBasket,
     updateCurrentFavorite,
-    updateCurrentImage
+    updateCurrentImage, updateTotalSum
 } from "../../store/webSlice";
 import {IProductItem} from "../../Types/ProductItemType";
 import {useNavigate} from "react-router";

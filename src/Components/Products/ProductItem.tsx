@@ -16,7 +16,7 @@ interface IProductItemProps extends IProductItem {
 const ProductItem: React.FC<IProductItemProps> = (props) => {
     const {
         id, title, description, price, discountPercentage, rating, stock, brand, category, thumbnail, images,
-        searchData, isFavorite
+        searchData, isFavorite, discountPrice
     } = props
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
@@ -31,7 +31,7 @@ const ProductItem: React.FC<IProductItemProps> = (props) => {
                 <img className={cl.product__img} src={thumbnail} alt={"Не видно!"}/>
                 <div className={cl.product__descr}>
                     <div className={cl.product__price}>
-                        <p className={cl.price__new}>{Math.round(price - (price * (discountPercentage / 100)))} $</p>
+                        <p className={cl.price__new}>{discountPrice} $</p>
                         <p className={cl.price__old}>
                             {price} $
                             <span className={cl.old__span}></span>
