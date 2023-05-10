@@ -4,18 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b457a0e-774d-46e9-9e10-e406612d6769" name="Changes" comment="Сделал страницу с избранными товарами и корзину, добавил возможность добавлять в корзину и в избранное">
+    <list default="true" id="1b457a0e-774d-46e9-9e10-e406612d6769" name="Changes" comment="Доделал корзину, сделал пагинацию, сделал мелочи">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Header/Header.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Header/Header.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Header/Header.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/Products/Product.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Products/Product.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Products/ProductItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Products/ProductItem.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/BasketPage/BasketPage.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/BasketPage/BasketPage.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/BasketPage/BasketPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/BasketPage/BasketPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/ProductItemPage/ProductItemPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/ProductItemPage/ProductItemPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/ProductsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/ProductsPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Types/ProductItemType.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Types/ProductItemType.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/webSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/webSlice.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +99,7 @@
       <workItem from="1682243152623" duration="11459000" />
       <workItem from="1682266480368" duration="24649000" />
       <workItem from="1682597407983" duration="13599000" />
-      <workItem from="1683724082183" duration="10123000" />
+      <workItem from="1683724082183" duration="13023000" />
     </task>
     <task id="LOCAL-00001" summary="Создал минимальное приложение на React TypeScript">
       <created>1682100371680</created>
@@ -173,7 +164,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682360229674</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Доделал корзину, сделал пагинацию, сделал мелочи">
+      <created>1683734421198</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1683734421199</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -188,6 +186,7 @@
     <MESSAGE value="Сделал основную стилизацию, добавил все необходимые данные" />
     <MESSAGE value="Сделал страницу карточки со всеми необходимыми стилями" />
     <MESSAGE value="Сделал страницу с избранными товарами и корзину, добавил возможность добавлять в корзину и в избранное" />
-    <option name="LAST_COMMIT_MESSAGE" value="Сделал страницу с избранными товарами и корзину, добавил возможность добавлять в корзину и в избранное" />
+    <MESSAGE value="Доделал корзину, сделал пагинацию, сделал мелочи" />
+    <option name="LAST_COMMIT_MESSAGE" value="Доделал корзину, сделал пагинацию, сделал мелочи" />
   </component>
 </project>

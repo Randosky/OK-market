@@ -130,7 +130,7 @@
     background-size: contain;
     width: 30px;
     height: 30px;
-    right: 0;
+    right: -10px;
     top: 0;
     transition: background 0.2s ease-in-out;
 }
