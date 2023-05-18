@@ -15,15 +15,16 @@ type WebState = {
     currentImage: string,
     favoriteCount: number,
     basketCount: number,
-    currentProductIsFavorite: boolean,
-    currentProductIsBasket: boolean,
     uniqueBrands: string[],
     uniqueCategories: string[],
     totalSum: number,
-    selected: number[],
+    selected: IProductItem[],
     page: number,
     skip: number,
     limit: number,
+    favoriteProducts: IProductItem[],
+    basketProducts: IProductItem[],
+    allProducts: IProductItem[],
 }
 
 const initialState: WebState = {
@@ -37,8 +38,6 @@ const initialState: WebState = {
     currentImage: "",
     favoriteCount: 0,
     basketCount: 0,
-    currentProductIsFavorite: false,
-    currentProductIsBasket: false,
     uniqueBrands: [],
     uniqueCategories: [],
     totalSum: 0,
@@ -46,12 +45,27 @@ const initialState: WebState = {
     page: 0,
     skip: 0,
     limit: 10,
+    favoriteProducts: [],
+    basketProducts: [],
+    allProducts: [],
 }
 
-export const getProducts = createAsyncThunk<IProductItem[], {skip: number, limit: number}>(
+export const getProducts = createAsyncThunk<IProductItem[], { skip: number, limit: number }>(
     "web/getProducts",
     async ({skip, limit}) => {
         const response = await axios.get(`https://dummyjson.com/products?limit=${limit}&skip=${skip}`, {
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+        return await response.data.products
+    }
+)
+
+export const getAllProducts = createAsyncThunk<IProductItem[], undefined>(
+    "web/getAllProducts",
+    async () => {
+        const response = await axios.get(`https://dummyjson.com/products?limit=100`, {
             headers: {
                 "Content-Type": "application/json",
             }
@@ -76,11 +90,11 @@ const webSlice = createSlice({
     name: "webSlice",
     initialState,
     reducers: {
-        updateLimit(state){
+        updateLimit(state) {
             state.limit = 100;
             state.skip = 0;
         },
-        updateActivePage(state, action: PayloadAction<number>){
+        updateActivePage(state, action: PayloadAction<number>) {
             state.page = action.payload;
             state.skip = 10 * action.payload;
             state.limit = 10;
@@ -106,32 +120,30 @@ const webSlice = createSlice({
             state.currentImage = action.payload;
         },
         updateCurrentFavorite(state, action: PayloadAction<number>) {
-            state.products = state.products.map(product => {
+            state.allProducts.map(product => {
                 if (product.id === action.payload) {
-                    return {
-                        ...product,
-                        isFavorite: !product.isFavorite,
-                    }
-                } else return {...product}
+                    if (state.favoriteProducts.filter(p => p.id === product.id).length > 0)
+                        state.favoriteProducts = state.favoriteProducts.filter(p => p.id !== product.id)
+                    else
+                        state.favoriteProducts.push(product)
+                }
             })
-            state.filteredProducts = state.products
         },
         countAllFavorite(state) {
-            state.favoriteCount = state.filteredProducts.filter(product => product.isFavorite === true).length
+            state.favoriteCount = state.favoriteProducts.length
         },
         updateCurrentBasket(state, action: PayloadAction<number>) {
-            state.products = state.products.map(product => {
+            state.allProducts.map(product => {
                 if (product.id === action.payload) {
-                    return {
-                        ...product,
-                        isBasket: !product.isBasket,
-                    }
-                } else return {...product}
+                    if (state.basketProducts.filter(p => p.id === product.id).length > 0)
+                        state.basketProducts = state.basketProducts.filter(p => p.id !== product.id)
+                    else
+                        state.basketProducts.push(product)
+                }
             })
-            state.filteredProducts = state.products
         },
         countAllBasket(state) {
-            state.basketCount = state.filteredProducts.filter(product => product.isBasket === true).length
+            state.basketCount = state.basketProducts.length
         },
         sortProducts(state, action: PayloadAction<string>) {
             if (action.payload === "title")
@@ -139,7 +151,7 @@ const webSlice = createSlice({
             if (action.payload === "description")
                 state.filteredProducts = state.products.sort((a, b) => a.description.localeCompare(b.description))
             if (action.payload === "isFavorite")
-                state.filteredProducts = state.products.filter(product => product.isFavorite === true)
+                state.filteredProducts = state.favoriteProducts
         },
         sortProductsByBrand(state, action: PayloadAction<string>) {
             state.filteredProducts = state.products.filter(product => product.brand === action.payload)
@@ -155,16 +167,13 @@ const webSlice = createSlice({
         },
         updateTotalSum(state) {
             state.totalSum = 0
-            state.products = state.products.map(product => {
-                if (product.isBasket) {
-                    state.totalSum += product.discountPrice * product.countToBuy
-                }
-                return {...product}
+            state.basketProducts.forEach(product => {
+                state.totalSum += product.discountPrice * product.countToBuy
             })
         },
         incrementProductCountToBuy(state, action: PayloadAction<IProductItem>) {
             if (action.payload.countToBuy < action.payload.stock) {
-                state.products = state.products.map(product => {
+                state.basketProducts = state.basketProducts.map(product => {
                     if (product.id === action.payload.id) {
                         return {
                             ...product,
@@ -172,12 +181,11 @@ const webSlice = createSlice({
                         }
                     } else return {...product}
                 })
-                state.filteredProducts = state.products
             }
         },
         decrementProductCountToBuy(state, action: PayloadAction<IProductItem>) {
             if (action.payload.countToBuy > 1) {
-                state.products = state.products.map(product => {
+                state.basketProducts = state.basketProducts.map(product => {
                     if (product.id === action.payload.id) {
                         return {
                             ...product,
@@ -185,79 +193,81 @@ const webSlice = createSlice({
                         }
                     } else return {...product}
                 })
-                state.filteredProducts = state.products
             }
         },
         setProductCountToBuy(state, action: PayloadAction<(string | IProductItem)[]>) {
-            if (typeof action.payload[1] === "string") {
-                const actionProduct: IProductItem = action.payload[0] as IProductItem
-                if (Number(action.payload[1]) > actionProduct.stock) {
-                    state.products = state.products.map(product => {
-                        if (product.id === actionProduct.id) {
-                            return {
-                                ...product,
-                                countToBuy: actionProduct.stock,
-                            }
-                        } else return {...product}
-                    })
-                    state.filteredProducts = state.products
-                } else if (Number(action.payload[1]) <= 1) {
-                    state.products = state.products.map(product => {
-                        if (product.id === actionProduct.id) {
-                            return {
-                                ...product,
-                                countToBuy: 1,
-                            }
-                        } else return {...product}
-                    })
-                    state.filteredProducts = state.products
-                } else {
-                    state.products = state.products.map(product => {
-                        if (product.id === actionProduct.id) {
-                            return {
-                                ...product,
-                                countToBuy: Number(action.payload[1]),
-                            }
-                        } else return {...product}
-                    })
-                    state.filteredProducts = state.products
-                }
+            const actionProduct: IProductItem = action.payload[0] as IProductItem
+            if (Number(action.payload[1]) > actionProduct.stock) {
+                state.basketProducts = state.basketProducts.map(product => {
+                    if (product.id === actionProduct.id) {
+                        return {
+                            ...product,
+                            countToBuy: actionProduct.stock,
+                        }
+                    } else return {...product}
+                })
+            } else if (Number(action.payload[1]) <= 1) {
+                state.basketProducts = state.basketProducts.map(product => {
+                    if (product.id === actionProduct.id) {
+                        return {
+                            ...product,
+                            countToBuy: 1,
+                        }
+                    } else return {...product}
+                })
+            } else {
+                state.basketProducts = state.basketProducts.map(product => {
+                    if (product.id === actionProduct.id) {
+                        return {
+                            ...product,
+                            countToBuy: Number(action.payload[1]),
+                        }
+                    } else return {...product}
+                })
             }
         },
         deleteAllBasket(state) {
-            state.products = state.products.map(product => {
-                return {
-                    ...product,
-                    isBasket: false,
-                }
-            })
-            state.filteredProducts = state.products
+            state.basketProducts = []
         },
-        updateSelected(state, action: PayloadAction<number>) {
-            if (action.payload in state.selected)
-                state.selected = state.selected.filter(id => id !== action.payload)
+        updateSelected(state, action: PayloadAction<IProductItem>) {
+            if (state.selected.filter(p => p.id === action.payload.id).length > 0)
+                state.selected = state.selected.filter(p => p.id !== action.payload.id)
             else
                 state.selected.push(action.payload)
         },
         deleteAllSelected(state) {
-            state.products.forEach(product => {
-                if (product.id in state.selected){
-                    product.isBasket = false
-                    state.selected = state.selected.filter(id => id !== product.id)
-                }
-            })
-            state.filteredProducts = state.products
+            if (state.basketCount === state.selected.length)
+                state.basketProducts = []
+            else
+                state.basketProducts = state.basketProducts.filter(product =>
+                    state.selected.filter(p => p.id === product.id).length === 0)
         },
         updateAllSelected(state) {
-            state.products.forEach(product => {
-                if (product.isBasket === true)
-                    state.selected.push(product.id)
-            })
+            if (state.basketCount === state.selected.length)
+                state.selected = []
+            else
+                state.selected = state.basketProducts
         },
+        setSelected(state) {
+            state.selected = []
+        }
     },
     extraReducers: (builder) => {
         builder
+            .addCase(getAllProducts.fulfilled, (state, action) => {
+                // Получаем вообще все продукты
+                state.allProducts = action.payload
+                state.allProducts = state.allProducts.map(product => {
+                    return {
+                        ...product,
+                        searchData: product.title + " " + product.description + " " + product.brand + " " + product.category,
+                        countToBuy: 1,
+                        discountPrice: Math.round(product.price - (product.price * (product.discountPercentage / 100))),
+                    }
+                })
+            })
             .addCase(getProducts.fulfilled, (state, action) => {
+                // Можем получить как все, так и часть продуктов
                 state.products = action.payload
                 state.uniqueBrands = []
                 state.uniqueCategories = []
@@ -265,8 +275,6 @@ const webSlice = createSlice({
                     return {
                         ...product,
                         searchData: product.title + " " + product.description + " " + product.brand + " " + product.category,
-                        isFavorite: false,
-                        isBasket: false,
                         countToBuy: 1,
                         discountPrice: Math.round(product.price - (product.price * (product.discountPercentage / 100))),
                     }
@@ -294,10 +302,12 @@ const webSlice = createSlice({
             .addCase(getProductById.rejected, (state, action) => {
                 console.log(action.error.stack)
             })
+
     },
 });
 
 export const {
+    setSelected,
     updateLimit,
     updateActivePage,
     updateSelected,

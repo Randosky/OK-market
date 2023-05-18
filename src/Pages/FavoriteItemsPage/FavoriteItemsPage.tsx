@@ -18,11 +18,8 @@ const FavoriteItemsPage: React.FC = () => {
                         <p className={cl.empty__text2}>Нажмите на логотип, чтобы продолжить покупки</p>
                     </div>
                     :
-                    webSlice.filteredProducts.map((product, index) => {
-                        if (product.isFavorite)
-                            return <ProductItem key={index} {...product}/>
-                        else
-                            return ""
+                    webSlice.favoriteProducts.map((product, index) => {
+                        return <ProductItem key={index} {...product}/>
                     })
             }
         </div>

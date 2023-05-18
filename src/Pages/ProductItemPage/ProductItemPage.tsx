@@ -88,13 +88,27 @@ const ProductItemPage: React.FC = () => {
                                             onClick={() => {
                                                 dispatch(updateCurrentFavorite(product.id))
                                                 dispatch(countAllFavorite())
-                                            }}>В избранное
+                                            }}>
+                                            {
+                                                webSlice.favoriteProducts.filter(p => p.id === product.id).length > 0
+                                                ?
+                                                    "Убрать из избранного"
+                                                :
+                                                    "В избранное"
+                                            }
                                         </button>
                                         <button className={cl.productItem__basket}
                                                 onClick={() => {
                                                     dispatch(updateCurrentBasket(product.id))
                                                     dispatch(countAllBasket())
-                                                }}>Добавить в корзину
+                                                }}>
+                                            {
+                                                webSlice.basketProducts.filter(p => p.id === product.id).length > 0
+                                                    ?
+                                                    "Убрать из корзины"
+                                                    :
+                                                    "В корзину"
+                                            }
                                         </button>
                                         <p className={cl.productItem__delivery}>Доставка<span> никогда</span></p>
                                     </div>

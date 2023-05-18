@@ -11,7 +11,6 @@ export interface IProductItem {
     thumbnail: string,
     images: string[],
     searchData: string,
-    isFavorite: boolean,
     isBasket: boolean,
     countToBuy: number,
     discountPrice: number,

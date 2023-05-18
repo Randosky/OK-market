@@ -1,26 +1,27 @@
 import React, {useEffect, useState} from 'react';
 import {IProductItem} from "../../Types/ProductItemType";
-import {useAppDispatch} from "../../Hooks/hooks";
+import {useAppDispatch, useAppSelector} from "../../Hooks/hooks";
 import cl from "./Product.module.css"
 import "../../App.css"
 import {useNavigate} from "react-router"
-import webSlice, {
-    countAllFavorite,
+import {
+    countAllBasket,
+    countAllFavorite, updateCurrentBasket,
     updateCurrentFavorite,
     updateIsHomePage
 } from "../../store/webSlice";
+import {isDeepStrictEqual} from "util";
 
 interface IProductItemProps extends IProductItem {
 }
 
 const ProductItem: React.FC<IProductItemProps> = (props) => {
     const {
-        id, title, description, price, discountPercentage, rating, stock, brand, category, thumbnail, images,
-        searchData, isFavorite, discountPrice
+        id, title,  price, rating, thumbnail, discountPrice,
     } = props
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
-
+    const webSlice = useAppSelector(state => state.web)
 
     return (
         <div className={cl.product__container}>
@@ -41,11 +42,20 @@ const ProductItem: React.FC<IProductItemProps> = (props) => {
                 </div>
                 <p className={cl.product__title}>{title}</p>
             </div>
-            <span className={isFavorite ? cl.heart__filled : cl.product__heart}
+            <span className={webSlice.favoriteProducts.filter(p => p.id === id).length > 0
+                ? cl.heart__filled : cl.product__heart}
                   onClick={() => {
                       dispatch(updateCurrentFavorite(id))
                       dispatch(countAllFavorite())
-                  }}></span>
+                  }}>
+            </span>
+            <span className={webSlice.basketProducts.filter(p => p.id === id).length > 0
+                ? cl.basket__filled : cl.product__basket}
+                  onClick={() => {
+                      dispatch(updateCurrentBasket(id))
+                      dispatch(countAllBasket())
+                  }}>
+            </span>
         </div>
     );
 };

@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../Hooks/hooks";
-import {getProducts, updateActivePage, updateIsHomePage, updateLimit} from "../store/webSlice";
+import {getAllProducts, getProducts, updateActivePage, updateIsHomePage, updateLimit} from "../store/webSlice";
 import ProductList from "../Components/Products/ProductList";
 import cl from "../Components/Products/Product.module.css";
 
@@ -10,6 +10,7 @@ const ProductsPage = () => {
 
     useEffect(() => {
         dispatch(updateIsHomePage(true));
+        dispatch(getAllProducts());
     }, []);
 
     useEffect(() => {

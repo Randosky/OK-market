@@ -8,7 +8,7 @@ import {
     countAllBasket,
     decrementProductCountToBuy, deleteAllBasket, deleteAllSelected,
     incrementProductCountToBuy,
-    setProductCountToBuy, updateAllSelected, updateCurrentBasket, updateSelected,
+    setProductCountToBuy, setSelected, updateAllSelected, updateCurrentBasket, updateIsHomePage, updateSelected,
     updateTotalSum
 } from "../../store/webSlice";
 import {useNavigate} from "react-router";
@@ -20,7 +20,9 @@ const BasketPage: React.FC = () => {
 
     useEffect(() => {
         dispatch(updateTotalSum())
-    }, [webSlice.filteredProducts]);
+        dispatch(setSelected())
+        dispatch(updateIsHomePage(false))
+    }, [webSlice.basketProducts]);
 
 
     return (
@@ -53,27 +55,31 @@ const BasketPage: React.FC = () => {
                                        }}>Удалить выбранные</p>
                                 </div>
                                 {
-                                    webSlice.filteredProducts.map((product, index) => {
-                                        if (product.isBasket)
-                                            return (
-                                                <div className={cl.basket__element} key={index}>
-                                                    <div
-                                                        className={product.id in webSlice.selected
+                                    webSlice.basketProducts.map((product, index) => {
+                                        return (
+                                            <div className={cl.basket__element} key={index}>
+                                                <div
+                                                    className={
+                                                        webSlice.selected.filter(p => p.id === product.id).length > 0
                                                             ? cl.element__checkbox + " " + cl.element__checkboxActive
                                                             : cl.element__checkbox}
-                                                        onClick={() => dispatch(updateSelected(product.id))}></div>
-                                                    <img className={cl.element__image} src={product.thumbnail}
-                                                         alt="Не видно"/>
-                                                    <p className={cl.element__text}>{product.title}</p>
-                                                    <p className={cl.element__price}>{product.discountPrice} $</p>
-                                                    <p className={cl.element__countText}>Количество:</p>
-                                                    <input value={product.countToBuy}
-                                                           onChange={(e) => {
-                                                               dispatch(setProductCountToBuy([product, e.target.value]))
-                                                           }}
-                                                           type={"number"}
-                                                           className={cl.element__count}/>
-                                                    <div className={cl.element__arrows}>
+                                                    onClick={() => dispatch(updateSelected(product))}></div>
+                                                <img className={cl.element__image} src={product.thumbnail}
+                                                     onClick={() => {
+                                                         navigate("/products/" + product.id)
+                                                         dispatch(updateIsHomePage(false))
+                                                     }}
+                                                     alt="Не видно"/>
+                                                <p className={cl.element__text}>{product.title}</p>
+                                                <p className={cl.element__price}>{product.discountPrice} $</p>
+                                                <p className={cl.element__countText}>Количество:</p>
+                                                <input value={product.countToBuy}
+                                                       onChange={(e) => {
+                                                           dispatch(setProductCountToBuy([product, e.target.value]))
+                                                       }}
+                                                       type={"number"}
+                                                       className={cl.element__count}/>
+                                                <div className={cl.element__arrows}>
                                                         <span className={cl.arrows__span1}
                                                               onClick={() => {
                                                                   dispatch(incrementProductCountToBuy(product))
@@ -85,10 +91,10 @@ const BasketPage: React.FC = () => {
                                                                       fill="#333333"/>
                                                             </svg>
                                                         </span>
-                                                        <span className={cl.arrows__span2}
-                                                              onClick={() => {
-                                                                  dispatch(decrementProductCountToBuy(product))
-                                                              }}>
+                                                    <span className={cl.arrows__span2}
+                                                          onClick={() => {
+                                                              dispatch(decrementProductCountToBuy(product))
+                                                          }}>
                                                             <svg width="16" height="9" viewBox="0 0 16 9" fill="none"
                                                                  xmlns="http://www.w3.org/2000/svg">
                                                                 <path fillRule="evenodd" clipRule="evenodd"
@@ -96,11 +102,9 @@ const BasketPage: React.FC = () => {
                                                                       fill="#333333"/>
                                                             </svg>
                                                         </span>
-                                                    </div>
                                                 </div>
-                                            )
-                                        else
-                                            return ""
+                                            </div>
+                                        )
                                     })
                                 }
                             </div>

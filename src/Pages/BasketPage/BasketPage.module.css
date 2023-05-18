@@ -83,6 +83,8 @@
     width: 100px;
     height: 80px;
     margin-right: 50px;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
 .element__text{

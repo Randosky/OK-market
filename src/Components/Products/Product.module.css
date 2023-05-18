@@ -147,8 +147,36 @@
     background-size: contain;
     width: 30px;
     height: 30px;
-    right: 0;
+    right: -10px;
     top: 0;
+}
+
+.basket__filled{
+    position: absolute;
+    cursor: pointer;
+    background: url("../../imgs/addToBasketFilled.svg") no-repeat center;
+    background-size: contain;
+    width: 30px;
+    height: 30px;
+    right: -10px;
+    top: 40px;
+}
+
+.product__basket{
+    position: absolute;
+    cursor: pointer;
+    background: url("../../imgs/addToBasket.svg") no-repeat center;
+    background-size: contain;
+    width: 30px;
+    height: 30px;
+    right: -10px;
+    top: 40px;
+    transition: background 0.2s ease-in-out;
+}
+
+.product__basket:hover{
+    background: url("../../imgs/addToBasketFilled.svg") no-repeat center;
+    background-size: contain;
 }
 
 .product__empty{
