@@ -4,7 +4,7 @@ import "../../App.css"
 import {useAppDispatch, useAppSelector} from "../../Hooks/hooks";
 import {
     doSearch,
-    sortProducts, sortProductsByBrand, sortProductsByCategories, sortProductsByPrice,
+    sortProducts, sortProductsByBrandAndCategory,
     updateFindInput,
     updateUserImage
 } from "../../store/webSlice";
@@ -65,7 +65,7 @@ const Header: React.FC = () => {
                             <label className={cl.right__image}>
                                 <span className={cl.image__span1}></span>
                                 <span className={cl.image__span2}></span>
-                                <input type="file" style={{display: "none"}}
+                                <input type="file" className={cl.header__userImage}
                                        onChange={(e) =>
                                            dispatch(updateUserImage(e.target.files))}
                                 />
@@ -95,6 +95,7 @@ const Header: React.FC = () => {
                             <select className={cl.sort__select} defaultValue=""
                                     onChange={e => dispatch(sortProducts(e.target.value))}>
                                 <option disabled value="">Сортировать по</option>
+                                <option value="disable">Убрать сортировку</option>
                                 <option value="title">Названию</option>
                                 <option value="description">Описанию</option>
                                 <option value="isFavorite">Избранным</option>
@@ -103,8 +104,12 @@ const Header: React.FC = () => {
                         <label className={cl.sort__label}>
                             Бренд
                             <select className={cl.sort__select} defaultValue=""
-                                    onChange={e => dispatch(sortProductsByBrand(e.target.value))}>
-                                <option disabled value="">Сортировать по</option>
+                                    onChange={e => dispatch(sortProductsByBrandAndCategory({
+                                        type: "b",
+                                        value: e.target.value
+                                    }))}>
+                                <option disabled value="">Фильтровать по</option>
+                                <option value="disable">Убрать фильтрацию</option>
                                 {
                                     webSlice.uniqueBrands.map((brand, index) => {
                                         return (
@@ -117,8 +122,12 @@ const Header: React.FC = () => {
                         <label className={cl.sort__label}>
                             Категория
                             <select className={cl.sort__select} defaultValue=""
-                                    onChange={e => dispatch(sortProductsByCategories(e.target.value))}>
-                                <option disabled value="">Сортировать по</option>
+                                    onChange={e => dispatch(sortProductsByBrandAndCategory({
+                                        type: "c",
+                                        value: e.target.value
+                                    }))}>
+                                <option disabled value="">Фильтровать по</option>
+                                <option value="disable">Убрать фильтрацию</option>
                                 {
                                     webSlice.uniqueCategories.map((category, index) => {
                                         return (
@@ -131,8 +140,9 @@ const Header: React.FC = () => {
                         <label className={cl.sort__label}>
                             Цена
                             <select className={cl.sort__select} defaultValue=""
-                                    onChange={e => dispatch(sortProductsByPrice(e.target.value))}>
+                                    onChange={e => dispatch(sortProducts(e.target.value))}>
                                 <option disabled value="">Сортировать по</option>
+                                <option value="disable">Убрать сортировку</option>
                                 <option value="ascending">Возрастанию</option>
                                 <option value="descending">Убыванию</option>
                             </select>

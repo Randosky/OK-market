@@ -5,9 +5,8 @@ import cl from "./ProductItemPage.module.css"
 import {
     countAllBasket,
     countAllFavorite,
-    getProductById, updateCurrentBasket,
-    updateCurrentFavorite,
-    updateCurrentImage, updateTotalSum
+    getProductById, updateCurrentArray,
+    updateCurrentImage,
 } from "../../store/webSlice";
 import {IProductItem} from "../../Types/ProductItemType";
 import {useNavigate} from "react-router";
@@ -44,12 +43,12 @@ const ProductItemPage: React.FC = () => {
                                 <div className={cl.images__all}>
                                     {
                                         product.images.map((image, index) => (
-                                            <img key={index} alt="Не видно!" src={image}
+                                            <img key={index} alt="фотография товара" src={image}
                                                  onClick={() => dispatch(updateCurrentImage(image))}/>
                                         ))
                                     }
                                 </div>
-                                <img alt="Не видно!" src={webSlice.currentImage} className={cl.images__current}/>
+                                <img alt="Выбранная фотография товара" src={webSlice.currentImage} className={cl.images__current}/>
                             </div>
                             <div className={cl.productItem__info}>
                                 <p className={cl.info__brand}>{product.brand}</p>
@@ -86,7 +85,7 @@ const ProductItemPage: React.FC = () => {
                                         <button
                                             className={cl.productItem__favorite}
                                             onClick={() => {
-                                                dispatch(updateCurrentFavorite(product.id))
+                                                dispatch(updateCurrentArray({array: "f", product}))
                                                 dispatch(countAllFavorite())
                                             }}>
                                             {
@@ -99,7 +98,7 @@ const ProductItemPage: React.FC = () => {
                                         </button>
                                         <button className={cl.productItem__basket}
                                                 onClick={() => {
-                                                    dispatch(updateCurrentBasket(product.id))
+                                                    dispatch(updateCurrentArray({array: "b", product}))
                                                     dispatch(countAllBasket())
                                                 }}>
                                             {

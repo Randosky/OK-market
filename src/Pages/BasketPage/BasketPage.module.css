@@ -1,3 +1,7 @@
+.basket{
+    width: 100%;
+}
+
 .basket__title{
     font-weight: 500;
     font-size: 34px;
@@ -55,6 +59,11 @@
     cursor: pointer;
 }
 
+.basket__elementPage{
+    width: fit-content;
+    height: fit-content;
+}
+
 .basket__element{
     display: flex;
     align-items: center;
@@ -109,6 +118,7 @@
 }
 
 .element__countText{
+    user-select: none;
     cursor: default;
     font-size: 18px;
     color: #000000;
@@ -146,6 +156,7 @@ input[type="number"]:focus {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    user-select: none;
 }
 
 .arrows__span1{
@@ -171,6 +182,7 @@ input[type="number"]:focus {
 }
 
 .basket__buy{
+    user-select: none;
     border-radius: 10px;
     font-size: 18px;
     background-color: #10c44c;
@@ -182,6 +194,7 @@ input[type="number"]:focus {
 }
 
 .basket__totalCost{
+    user-select: none;
     display: flex;
     justify-content: space-between;
     align-items: center;

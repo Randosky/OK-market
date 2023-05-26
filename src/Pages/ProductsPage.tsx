@@ -17,22 +17,18 @@ const ProductsPage = () => {
         dispatch(getProducts({skip: webSlice.skip, limit: webSlice.limit}));
     }, [webSlice.skip, webSlice.limit]);
 
+        const pageButtons = Array.from({length: 10}, (_, index) =>
+            <div key={index} className={cl.pagination__page}
+                 onClick={() => dispatch(updateActivePage(index))}>
+                {index + 1}
+            </div>)
 
     return (
         <div>
             <div className={cl.product__pagination}>
-                {
-                    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, index) => {
-                        return (
-                            <div key={index} className={cl.pagination__page}
-                                 onClick={() => dispatch(updateActivePage(item))}>
-                                {item + 1}
-                            </div>
-                        )
-                    })
-                }
+                {pageButtons}
                 <div className={cl.pagination__page}
-                onClick={() => dispatch(updateLimit())}>
+                     onClick={() => dispatch(updateLimit())}>
                     Показать всё
                 </div>
             </div>

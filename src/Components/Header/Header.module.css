@@ -90,6 +90,10 @@
     position: relative;
 }
 
+.header__userImage{
+    display: none;
+}
+
 .image__span1{
     position: absolute;
     width: 35px;

@@ -2,8 +2,8 @@ import React from 'react';
 import {useAppSelector} from "../../Hooks/hooks";
 import cl from "../../Components/Products/Product.module.css"
 import "../../App.css"
-import {countAllFavorite, updateCurrentFavorite, updateIsHomePage} from "../../store/webSlice";
 import ProductItem from "../../Components/Products/ProductItem";
+import EmptyArrays from "../../UI/EmptyArrays";
 
 const FavoriteItemsPage: React.FC = () => {
     const webSlice = useAppSelector(state => state.web)
@@ -13,14 +13,9 @@ const FavoriteItemsPage: React.FC = () => {
             {
                 webSlice.favoriteCount === 0
                     ?
-                    <div className={cl.product__empty}>
-                        <p className={cl.empty__text1}>У вас нет ничего в избранном</p>
-                        <p className={cl.empty__text2}>Нажмите на логотип, чтобы продолжить покупки</p>
-                    </div>
+                    <EmptyArrays title="избранном"/>
                     :
-                    webSlice.favoriteProducts.map((product, index) => {
-                        return <ProductItem key={index} {...product}/>
-                    })
+                    webSlice.favoriteProducts.map((product, index) => <ProductItem key={index} {...product}/> )
             }
         </div>
     );

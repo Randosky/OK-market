@@ -11,7 +11,11 @@ const ProductList: React.FC = () => {
     return (
         <div className={cl.product__list}>
             {
-                webSlice.filteredProducts.map(product => <ProductItem key={product.id} {...product}/>)
+                webSlice.filteredProducts.map(product =>
+                    <div key={product.id} className={cl.productItem__container}>
+                        <ProductItem {...product}/>
+                    </div>
+                )
             }
         </div>
     );
