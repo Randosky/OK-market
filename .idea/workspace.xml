@@ -4,24 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b457a0e-774d-46e9-9e10-e406612d6769" name="Changes" comment="Готово">
-      <change afterPath="$PROJECT_DIR$/src/Components/BasketElement/BasketElement.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UI/DownArrowSvg.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UI/EmptyArrays.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UI/UpArrowSvg.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="1b457a0e-774d-46e9-9e10-e406612d6769" name="Changes" comment="Переделал, улучшил код">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Header/Header.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Header/Header.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Header/Header.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/Products/Product.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Products/Product.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Products/ProductItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Products/ProductItem.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Products/ProductList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Products/ProductList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/BasketPage/BasketPage.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/BasketPage/BasketPage.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/BasketPage/BasketPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/BasketPage/BasketPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/FavoriteItemsPage/FavoriteItemsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/FavoriteItemsPage/FavoriteItemsPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/ProductItemPage/ProductItemPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/ProductItemPage/ProductItemPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/ProductsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/ProductsPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/webSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/webSlice.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +103,7 @@
       <workItem from="1684392445335" duration="7690000" />
       <workItem from="1684498345092" duration="1240000" />
       <workItem from="1684697468972" duration="108000" />
-      <workItem from="1685105065157" duration="12017000" />
+      <workItem from="1685105065157" duration="12629000" />
     </task>
     <task id="LOCAL-00001" summary="Создал минимальное приложение на React TypeScript">
       <created>1682100371680</created>
@@ -204,7 +189,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684408086579</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Переделал, улучшил код">
+      <created>1685118588113</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1685118588113</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -221,6 +213,7 @@
     <MESSAGE value="Сделал страницу с избранными товарами и корзину, добавил возможность добавлять в корзину и в избранное" />
     <MESSAGE value="Доделал корзину, сделал пагинацию, сделал мелочи" />
     <MESSAGE value="Готово" />
-    <option name="LAST_COMMIT_MESSAGE" value="Готово" />
+    <MESSAGE value="Переделал, улучшил код" />
+    <option name="LAST_COMMIT_MESSAGE" value="Переделал, улучшил код" />
   </component>
 </project>
